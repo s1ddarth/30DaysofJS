@@ -66,6 +66,21 @@
   </style>
 
   <script>
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdates() {
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+      /**
+       * Examples of setProperty() calls
+       * setProperty(spacing, 100px)
+       * setProperty(blur, 10px)
+       * setProperty(base, #ffc600)
+      */
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdates));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdates));
   </script>
 
 </body>
