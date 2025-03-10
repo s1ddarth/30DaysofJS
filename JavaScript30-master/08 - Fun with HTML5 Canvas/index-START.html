@@ -26,6 +26,7 @@
     let isDrawing = false;
     let lastX = 0;
     let lastY = 0;
+    let direction = true;
 
     let hue = 0;
 
@@ -33,16 +34,26 @@
       if (!isDrawing) return;
       // console.log(e);
       context.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-      
+
       context.beginPath();
       context.moveTo(lastX, lastY); // Start drawing from here
       context.lineTo(e.offsetX, e.offsetY); // Finish drawing here
       context.stroke(); // Draw the line
       lastX = e.offsetX // Update lastX
       lastY = e.offsetY;  // Update lastY
-      
+
       hue++;
       if (hue >= 360) hue = 0;
+
+      // Change line width while drawing
+      if (context.lineWidth >= 60 || context.lineWidth <= 1)
+        direction = !direction;
+
+      if (direction)
+        context.lineWidth++;
+      else
+        context.lineWidth--;
+
     }
 
     canvas.addEventListener('mousedown', () => {
