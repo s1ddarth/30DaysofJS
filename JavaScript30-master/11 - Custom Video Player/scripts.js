@@ -18,6 +18,24 @@ function updateButton() {
   toggle.textContent = icon;
 }
 
+function skip() {
+  video.currentTime += parseFloat(this.dataset.skip);
+}
+
+function handleRangeUpdate() {
+  video[this.name] = this.value;
+}
+
+function handleProgress() {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressBar.style.flexBasis = `${percent}%`;
+}
+
+function scrub(e) {
+  const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+  video.currentTime = scrubTime;
+}
+
 // Add event listeners to the video player
 video.addEventListener("click", togglePlay);
 video.addEventListener("play", updateButton);
