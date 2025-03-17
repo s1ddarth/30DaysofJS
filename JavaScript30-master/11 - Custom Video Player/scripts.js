@@ -9,8 +9,6 @@ const ranges = player.querySelectorAll(".player__slider");
 
 // Required functions for video player
 function togglePlay() {
-  if(video.paused)
-    video.play();
-  else
-    video.pause();
+  if (video.paused) video.play();
+  else video.pause();
 }
