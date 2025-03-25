@@ -89,7 +89,19 @@
           .join("");
       }
 
+      function toggleDone(e) {
+        if ((!e.target.matches("input"))) return; // Skip the function unless an input is clicked
+
+        const elem = e.target;
+        const elemIndex = elem.dataset.index;
+        items[elemIndex].done = !items[elemIndex].done; // Set the done property to the opposite of itself (check or uncheck)
+        localStorage.setItem("items", JSON.stringify(items)); // Add content to localStorage
+        populateList(items, itemsList);
+      }
+
       addItems.addEventListener("submit", addItem); // listen for submit event on form
+      itemsList.addEventListener("click", toggleDone);
+
       populateList(items, itemsList);
     </script>
   </body>
