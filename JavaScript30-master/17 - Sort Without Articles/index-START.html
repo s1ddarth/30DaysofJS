@@ -60,6 +60,22 @@
         "Anywhere But Here",
         "An Old Dog",
       ];
+
+      // Regex function to remove articles from the band name for sorting
+      function stripArticles(bandName) {
+        return bandName.replace(/^(a |the |an )/i, "").trim();
+      }
+
+      const sortedBands = bands.sort((a, b) => {
+        if (stripArticles(a) > stripArticles(b)) return 1;
+        else return -1;
+      });
+      console.table(sortedBands);
+
+      // Display the sorted bands in the DOM
+      document.querySelector("#bands").innerHTML = sortedBands
+        .map((band) => `<li>${band}</li>`)
+        .join("");
     </script>
   </body>
 </html>
