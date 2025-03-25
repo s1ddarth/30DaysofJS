@@ -57,7 +57,6 @@
     console.log(team4);
 
     // The same thing goes for objects, let's say we have a person object
-
     // with Objects
     const person = {
       name: 'Wes Bos',
@@ -65,8 +64,12 @@
     };
 
     // and think we make a copy:
+    const captain = person; // This is only a reference to person
+    captain.number = 99;
 
     // how do we take a copy instead?
+    const cap2 = Object.assign({}, person, { number: 99 }); // This is a shallow copy
+    console.log(cap2);
 
     // We will hopefully soon see the object ...spread
 
