@@ -29,8 +29,15 @@
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+    const team = players; // This is not a copy, it's a reference to the original array
+    console.log(players, team);
 
     // You might think we can just do something like this:
+    /*
+    team[3] = 'Lux';  // This line updates both the arrays
+    console.log(players, team);
+    */
+    
 
     // however what happens when we update that array?
 
