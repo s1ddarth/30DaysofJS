@@ -54,6 +54,9 @@
         // Calculating how far our shadow is allowed to walk from the element it is cast from
         const xWalk = Math.round((x / width) * walk - walk / 2);
         const yWalk = Math.round((y / height) * walk - walk / 2);
+
+        // Adding a shadow to our text
+        text.style.textShadow = `${xWalk}px ${yWalk}px 0 orange`;
       }
 
       hero.addEventListener("mousemove", shadow);
