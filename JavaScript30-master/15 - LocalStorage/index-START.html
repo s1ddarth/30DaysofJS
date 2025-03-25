@@ -57,7 +57,7 @@
     <script>
       const addItems = document.querySelector(".add-items");
       const itemsList = document.querySelector(".plates");
-      const items = [];
+      const items = JSON.parse(localStorage.getItem("items")) || [];
 
       function addItem(e) {
         e.preventDefault(); // Prevents page from reloading whenever the submit button is clicked
@@ -71,20 +71,26 @@
         this.reset(); // clears the form input field after submitting
         items.push(item); // add item to items array
         populateList(items, itemsList);
+        localStorage.setItem("items", JSON.stringify(items)); // Add content to localStorage
       }
 
       function populateList(plates = [], platesList) {
-        platesList.innerHTML = plates.map((plate, i) => {
-          return `
-              <input type="checkbox" data-index=${i} id="item${i} checked"/>
+        platesList.innerHTML = plates
+          .map((plate, i) => {
+            return `
+              <input type="checkbox" data-index=${i} id="item${i} ${
+              plate.done ? "checked" : ""
+            }"/>
               <li>
                 <label for="item${i}">${plate.text}</label>
               </li>
             `;
-        }).join('');
+          })
+          .join("");
       }
 
       addItems.addEventListener("submit", addItem); // listen for submit event on form
+      populateList(items, itemsList);
     </script>
   </body>
 </html>
