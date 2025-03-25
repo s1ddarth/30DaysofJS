@@ -67,9 +67,21 @@
           text,
           done: false,
         };
-        
+
         this.reset(); // clears the form input field after submitting
-        console.log(item);
+        items.push(item); // add item to items array
+        populateList(items, itemsList);
+      }
+
+      function populateList(plates = [], platesList) {
+        platesList.innerHTML = plates.map((plate, i) => {
+          return `
+              <input type="checkbox" data-index=${i} id="item${i} checked"/>
+              <li>
+                <label for="item${i}">${plate.text}</label>
+              </li>
+            `;
+        }).join('');
       }
 
       addItems.addEventListener("submit", addItem); // listen for submit event on form
