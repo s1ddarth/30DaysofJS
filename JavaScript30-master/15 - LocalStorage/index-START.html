@@ -51,12 +51,14 @@
       <form class="add-items">
         <input type="text" name="item" placeholder="Item Name" required />
         <input type="submit" value="+ Add Item" />
+        <input id="clear-list" type="button" value="Clear list" />
       </form>
     </div>
 
     <script>
       const addItems = document.querySelector(".add-items");
       const itemsList = document.querySelector(".plates");
+      const clearListBtn = document.querySelector("#clear-list");
       const items = JSON.parse(localStorage.getItem("items")) || [];
 
       function addItem(e) {
@@ -89,6 +91,12 @@
           .join("");
       }
 
+      function clearList(e) {
+        localStorage.clear();
+        items.length = 0; // Empty the items array
+        populateList(items, itemsList);
+      }
+
       function toggleDone(e) {
         if (!e.target.matches("input")) return; // Skip the function unless an input is clicked
 
@@ -100,6 +108,7 @@
       }
 
       addItems.addEventListener("submit", addItem); // listen for submit event on form
+      clearListBtn.addEventListener("click", clearList);
       itemsList.addEventListener("click", toggleDone);
 
       populateList(items, itemsList);
