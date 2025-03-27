@@ -53,7 +53,18 @@
       document.body.appendChild(highlight);
 
       function highlightLink() {
-        console.log("Highlighting!");
+        const linkCoords = this.getBoundingClientRect();
+        const coords = {
+          width: linkCoords.width,
+          height: linkCoords.height,
+          // The top and left properties have to account for the scroll position
+          top: linkCoords.top + window.scrollY,
+          left: linkCoords.left + window.scrollX,
+        };
+
+        highlight.style.width = `${coords.width}px`;
+        highlight.style.height = `${coords.height}px`;
+        highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
       }
 
       triggers.forEach((a) => a.addEventListener("mouseenter", highlightLink));
