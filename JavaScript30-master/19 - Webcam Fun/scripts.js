@@ -4,6 +4,7 @@ const ctx = canvas.getContext("2d");
 const strip = document.querySelector(".strip");
 const snap = document.querySelector(".snap");
 
+// This function gets the webcam video and plays it in the preview window
 function getVideo() {
   navigator.mediaDevices
     .getUserMedia({ video: true, audio: false })
@@ -13,8 +14,25 @@ function getVideo() {
       video.play();
     })
     .catch((err) => {
-      console.error(`Error getting video`, err);
+      console.error(`Error getting webcam video`, err);
     });
 }
 
+/* This function takes the video and adds it to the
+    canvas where it can be manipulated by the user */
+function paintToCanvas() {
+  const width = video.videoWidth;
+  const height = video.videoHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  const updateInterval = 16;
+  // Run the function on an interval
+  return setInterval(() => {
+    ctx.drawImage(video, 0, 0, width, height);
+    console.log("Drawing image to canvas");
+  }, updateInterval);
+}
+
 getVideo();
+video.addEventListener("canplay", paintToCanvas);
