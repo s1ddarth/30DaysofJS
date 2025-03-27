@@ -29,6 +29,8 @@
           .map((result) => result.transcript)
           .join("");
 
+        p.textContent = transcript;
+
         /* Makes sure that the prior spoken sentence is not overwritten and is only appended 
             by another paragraph */
         if (e.results[0].isFinal) {
