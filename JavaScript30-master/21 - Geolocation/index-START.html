@@ -96,6 +96,22 @@
       }
       /*Compass: https://thenounproject.com/search/?q=compass&i=592352*/
     </style>
-    <script></script>
+    <script>
+      // This needs to be run on an emulator or on a mobile device
+      const arrow = document.querySelector(".arrow");
+      const speed = document.querySelector(".speed-value");
+
+      // Below code will get the current position of the user and will update the speed and arrow direction
+      navigator.geolocation.watchPosition(
+        (data) => {
+          console.log(data);
+          speed.textContent = data.coords.speed;
+          arrow.style.transform = `rotate(${data.coords.heading}deg)`;
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    </script>
   </body>
 </html>
