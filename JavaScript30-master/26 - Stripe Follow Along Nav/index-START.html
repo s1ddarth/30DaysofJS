@@ -268,10 +268,18 @@
 
       function handleEnter() {
         console.log("Enter");
+        this.classList.add("trigger-enter");
+        setTimeout(
+          () =>
+            this.classList.contains("trigger-enter") &&
+            this.classList.add("trigger-enter-active"),
+          150
+        );
       }
 
       function handleLeave() {
         console.log("Leave");
+        this.classList.remove('trigger-enter', 'trigger-enter-active');
       }
 
       triggers.forEach((trigger) =>
