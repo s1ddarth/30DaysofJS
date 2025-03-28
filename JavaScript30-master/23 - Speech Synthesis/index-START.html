@@ -44,13 +44,21 @@
       function populateVoices() {
         voices = this.getVoices();
         voicesDropdown.innerHTML = voices
-          .filter((voice) => voice.lang.includes("en"))
+          .filter((voice) => voice.lang.includes("en")) // filter voices that include 'en' in their language
           .map(
             (voice) =>
               `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`
           )
           .join("");
       }
+
+      function setVoice() {
+        console.log("Changing voice!");
+        msg.voice = voices.find((voice) => voice.name === this.value);
+        toggle();
+      }
+
+      speechSynthesis.addEventListener('voiceschanged', populateVoices);
     </script>
   </body>
 </html>
