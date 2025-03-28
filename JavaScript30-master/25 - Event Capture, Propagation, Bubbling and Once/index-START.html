@@ -42,6 +42,20 @@
     </style>
 
     <button></button>
-    <script></script>
+    <script>
+      const divs = document.querySelectorAll("div");
+
+      function logText(e) {
+        console.log(this); // This logs all the divs, since they are contained within each other - Bubbling - 3,2,1
+        // e.stopPropagation(); // stop bubbling the even upwards
+      }
+
+      divs.forEach((div) =>
+        div.addEventListener("click", logText, {
+          capture: true, // Runs the event during capture rather than trigger - 1,2,3
+          once: true, // Listens for a click once and then unbinds itself
+        })
+      );
+    </script>
   </body>
 </html>
