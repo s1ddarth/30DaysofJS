@@ -22,6 +22,4 @@ I would like to credit **Wes Bos** for creating this course. If you're intereste
 
 ## My Solutions
 
-In this repository, you'll find my solutions and code snippets for each day's challenge.
-
-Happy coding!
+This repo contains my solutions and code snippets for each day's challenge.
