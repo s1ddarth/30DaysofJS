@@ -35,6 +35,25 @@
       <div class="item item25">25</div>
     </div>
 
-    <script></script>
+    <script>
+      const slider = document.querySelector(".items");
+      let isDown = false; // Is the mouse being clicked?
+      let startX; // Starting position of the mouse when clicked
+      let scrollLeft; // How far the mouse has been dragged
+
+      slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+      });
+
+      slider.addEventListener("mouseleave", () => {
+        isDown = false;
+      });
+
+      slider.addEventListener("mouseup", () => {
+        isDown = false;
+      });
+
+      slider.addEventListener("mousemove", (e) => {});
+    </script>
   </body>
 </html>
