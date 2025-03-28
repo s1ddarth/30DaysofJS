@@ -41,9 +41,20 @@
       const scoreBoard = document.querySelector(".score");
       const moles = document.querySelectorAll(".mole");
 
+      let lastHole;
+
       // Decides the amount of time that the mole will be visible
       function randomTime(min, max) {
         return Math.round(Math.random() * (max - min) + min);
+      }
+
+      // Decides which hole the mole will appear in
+      function randomHole(holes) {
+        const idx = Math.floor(Math.random() * holes.length); // We have 6 holes
+        const hole = holes[idx];
+        if (hole === lastHole) return randomHole(holes); // If the hole is the same as the last hole, run the function again
+        lastHole = hole;
+        return hole;
       }
     </script>
   </body>
