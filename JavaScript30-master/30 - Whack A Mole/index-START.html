@@ -42,6 +42,7 @@
       const moles = document.querySelectorAll(".mole");
 
       let lastHole;
+      let timeUp = false; // Tracks whether the game time has elapsed
 
       // Decides the amount of time that the mole will be visible
       function randomTime(min, max) {
@@ -55,6 +56,16 @@
         if (hole === lastHole) return randomHole(holes); // If the hole is the same as the last hole, run the function again
         lastHole = hole;
         return hole;
+      }
+
+      function peep() {
+        const time = randomTime(200, 1000);
+        const hole = randomHole(holes);
+        hole.classList.add("up");
+        setTimeout(() => {
+          hole.classList.remove("up");
+          if (!timeUp) peep();
+        }, time);
       }
     </script>
   </body>
